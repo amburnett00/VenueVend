@@ -1,26 +1,1195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VenueVend</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VenueVend – Smart Vending for Bars & Nightlife | Manhattan, Lawrence & Kansas City KS</title>
+<meta name="description" content="VenueVend installs free 21+ touchscreen vending machines in bars and nightlife venues across Manhattan KS, Lawrence KS, and Kansas City. Zero cost to venues. Passive income. We handle everything.">
+<meta name="keywords" content="bar vending machine Kansas, nightlife vending Kansas City, vape vending machine bar, 21 plus vending, passive income bar owner, Manhattan KS bar, Lawrence KS bar vending, Kansas City vending machine, nicotine vending machine bar, ZYN vending machine">
+<meta name="robots" content="index, follow">
+<meta name="author" content="VenueVend">
+<link rel="canonical" href="https://venue-vend.vercel.app/">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://venue-vend.vercel.app/">
+<meta property="og:title" content="VenueVend – Smart Vending for Bars & Nightlife">
+<meta property="og:description" content="Free 21+ touchscreen vending machines for bars in Manhattan KS, Lawrence KS & Kansas City. Zero cost. Passive income. We install, stock & manage everything.">
+<meta property="og:image" content="https://venue-vend.vercel.app/og-image.jpg">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VenueVend – Smart Vending for Bars & Nightlife">
+<meta name="twitter:description" content="Free 21+ vending machines for bars. Zero cost to you. We install, stock & manage. Passive income every night.">
+
+<!-- Local Business Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "VenueVend",
+  "description": "Smart 21+ touchscreen vending machines for bars and nightlife venues in Kansas and Kansas City area.",
+  "telephone": "+19139083208",
+  "email": "VenueVend@outlook.com",
+  "url": "https://venue-vend.vercel.app/",
+  "areaServed": ["Manhattan, KS", "Lawrence, KS", "Kansas City, KS", "Kansas City, MO"],
+  "serviceType": "Vending Machine Placement and Management"
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon-cyan: #00f5ff;
+    --neon-pink: #ff2d78;
+    --neon-purple: #b24bff;
+    --dark-bg: #060810;
+    --dark-card: #0d1020;
+    --dark-card2: #111428;
+    --text-main: #e8eaf6;
+    --text-muted: #8892b0;
+    --gold: #ffd166;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark-bg);
+    color: var(--text-main);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAVIGATION ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(6, 8, 16, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 245, 255, 0.12);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--neon-cyan); }
+
+  .nav-cta {
+    background: transparent;
+    border: 1.5px solid var(--neon-cyan);
+    color: var(--neon-cyan) !important;
+    padding: 0.5rem 1.4rem;
+    border-radius: 4px;
+    transition: background 0.3s, box-shadow 0.3s !important;
+  }
+  .nav-cta:hover {
+    background: rgba(0, 245, 255, 0.1) !important;
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.3) !important;
+    color: var(--neon-cyan) !important;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    padding-top: 80px;
+  }
+
+  .hero-glow-1 {
+    position: absolute; top: -20%; left: -10%;
+    width: 60%; height: 70%;
+    background: radial-gradient(ellipse, rgba(178, 75, 255, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-glow-2 {
+    position: absolute; bottom: -20%; right: -5%;
+    width: 55%; height: 65%;
+    background: radial-gradient(ellipse, rgba(0, 245, 255, 0.14) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+    max-width: 1200px; width: 100%;
+    padding: 0 3rem;
+  }
+
+  .hero-text .eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--neon-cyan);
+    border: 1px solid rgba(0, 245, 255, 0.3);
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    animation: fadeSlideUp 0.8s ease forwards;
+  }
+
+  .hero-text h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    animation: fadeSlideUp 0.8s 0.15s ease both;
+  }
+
+  .hero-text h1 span {
+    display: block;
+    background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-text p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    animation: fadeSlideUp 0.8s 0.3s ease both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeSlideUp 0.8s 0.45s ease both;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    color: var(--dark-bg);
+    padding: 0.9rem 2.2rem;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: box-shadow 0.3s, transform 0.2s;
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-main);
+    padding: 0.9rem 2.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--neon-pink);
+    color: var(--neon-pink);
+  }
+
+  /* HERO machine visual */
+  .hero-machine {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    animation: fadeSlideUp 0.8s 0.2s ease both;
+  }
+
+  .machine-frame {
+    position: relative;
+    width: 300px;
+    background: linear-gradient(160deg, #1a1e35, #0d1020);
+    border-radius: 20px;
+    border: 1.5px solid rgba(0, 245, 255, 0.25);
+    padding: 2rem 1.5rem 3rem;
+    box-shadow:
+      0 0 60px rgba(0, 245, 255, 0.12),
+      0 0 120px rgba(178, 75, 255, 0.08),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+
+  .machine-glow {
+    position: absolute; inset: -2px;
+    border-radius: 22px;
+    background: linear-gradient(160deg, rgba(0,245,255,0.3), rgba(178,75,255,0.3), rgba(255,45,120,0.15));
+    z-index: -1;
+    filter: blur(12px);
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  .machine-screen {
+    background: linear-gradient(180deg, #0a1628, #0d1f3c);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(0, 245, 255, 0.15);
+    min-height: 200px;
+  }
+
+  .screen-header {
+    text-align: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--neon-cyan);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0,245,255,0.15);
+  }
+
+  .product-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .product-cell {
+    background: rgba(255,255,255,0.04);
+    border-radius: 6px;
+    padding: 0.5rem 0.3rem;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: border-color 0.3s;
+    cursor: default;
+  }
+  .product-cell:hover { border-color: rgba(0,245,255,0.4); }
+
+  .product-icon { font-size: 1.3rem; display: block; margin-bottom: 0.2rem; }
+  .product-label { font-size: 0.45rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .product-price { font-size: 0.55rem; color: var(--neon-cyan); font-weight: 700; margin-top: 0.15rem; }
+
+  .machine-panel {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 0.5rem;
+  }
+
+  .age-badge {
+    background: linear-gradient(135deg, var(--neon-pink), #c0006b);
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 0.3rem 0.7rem;
+    border-radius: 100px;
+    text-transform: uppercase;
+  }
+
+  .machine-logo-small {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-stats {
+    display: flex; gap: 2rem; margin-top: 3rem;
+    animation: fadeSlideUp 0.8s 0.6s ease both;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 0.2rem; }
+
+  /* ── SECTION BASE ── */
+  section { position: relative; z-index: 1; padding: 100px 3rem; }
+  .section-container { max-width: 1200px; margin: 0 auto; }
+
+  .section-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--neon-cyan);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+
+  /* ── HOW IT WORKS ── */
+  #how {
+    background: linear-gradient(180deg, var(--dark-bg) 0%, #080b16 100%);
+  }
+
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem; margin-top: 4rem;
+  }
+
+  .step-card {
+    background: var(--dark-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .step-card:hover {
+    border-color: rgba(0, 245, 255, 0.25);
+    transform: translateY(-6px);
+  }
+
+  .step-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    background: linear-gradient(135deg, rgba(0,245,255,0.15), rgba(178,75,255,0.15));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+
+  .step-icon { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
+
+  .step-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+  }
+
+  .step-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── MACHINE SPOTLIGHT ── */
+  #machine {
+    background: var(--dark-bg);
+  }
+
+  .machine-spotlight {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+    margin-top: 4rem;
+  }
+
+  .spotlight-visual {
+    position: relative;
+  }
+
+  .spotlight-box {
+    background: linear-gradient(135deg, #0d1020, #111428);
+    border-radius: 20px;
+    border: 1px solid rgba(0,245,255,0.15);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .spotlight-box::before {
+    content: '';
+    position: absolute; top: -50%; right: -30%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(178,75,255,0.12), transparent 60%);
+    pointer-events: none;
+  }
+
+  .machine-big-icon { font-size: 5rem; display: block; text-align: center; margin-bottom: 1.5rem; }
+
+  .spec-list { list-style: none; }
+  .spec-list li {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+  .spec-list li:last-child { border-bottom: none; }
+  .spec-list li::before {
+    content: '◆';
+    color: var(--neon-cyan);
+    font-size: 0.5rem;
+    margin-top: 0.4rem;
+    flex-shrink: 0;
+  }
+  .spec-list strong { color: var(--text-main); }
+
+  .age-warning-box {
+    background: linear-gradient(135deg, rgba(255, 45, 120, 0.1), rgba(255, 45, 120, 0.04));
+    border: 1px solid rgba(255, 45, 120, 0.3);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-top: 2rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .age-warning-box .warning-icon { font-size: 2rem; flex-shrink: 0; }
+  .age-warning-box p { font-size: 0.88rem; color: #ffaac0; line-height: 1.5; }
+  .age-warning-box strong { color: var(--neon-pink); }
+
+  /* PRODUCTS */
+  .products-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: start;
+  }
+
+  .products-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1rem; margin-top: 2rem;
+  }
+
+  .product-card {
+    background: var(--dark-card2);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 1.5rem;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: default;
+  }
+  .product-card:hover {
+    border-color: rgba(0,245,255,0.25);
+    transform: translateY(-3px);
+  }
+  .product-card .p-icon { font-size: 2rem; display: block; margin-bottom: 0.75rem; }
+  .product-card .p-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.35rem; }
+  .product-card .p-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+  /* ── WHY PARTNER ── */
+  #why {
+    background: linear-gradient(180deg, #080b16 0%, var(--dark-bg) 100%);
+  }
+
+  .benefits-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 4rem;
+  }
+
+  .benefit-card {
+    background: var(--dark-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .benefit-card:hover {
+    border-color: rgba(178, 75, 255, 0.3);
+    box-shadow: 0 8px 40px rgba(178, 75, 255, 0.08);
+  }
+
+  .benefit-icon {
+    width: 50px; height: 50px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(0,245,255,0.12), rgba(178,75,255,0.12));
+    border: 1px solid rgba(0,245,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .benefit-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+  .benefit-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--dark-bg);
+  }
+
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+    margin-top: 4rem;
+  }
+
+  .about-text p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .about-text p strong { color: var(--text-main); }
+
+  .commitment-list { list-style: none; margin-top: 1.5rem; }
+  .commitment-list li {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    padding: 0.5rem 0;
+  }
+  .commitment-list li .check {
+    color: var(--neon-cyan);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+
+  .about-card {
+    background: linear-gradient(135deg, #0d1020, #111428);
+    border: 1px solid rgba(0,245,255,0.12);
+    border-radius: 20px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-card::after {
+    content: '';
+    position: absolute; bottom: -30%; right: -20%;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,245,255,0.08), transparent 60%);
+    pointer-events: none;
+  }
+
+  .about-quote {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+  }
+  .about-quote span {
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .service-area {
+    background: rgba(0,245,255,0.05);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  .service-area-title { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--neon-cyan); margin-bottom: 0.5rem; font-weight: 600; }
+  .service-area p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: linear-gradient(180deg, var(--dark-bg) 0%, #080b16 100%);
+  }
+
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: start;
+    margin-top: 4rem;
+  }
+
+  .contact-info { }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .contact-icon-wrap {
+    width: 44px; height: 44px; flex-shrink: 0;
+    border-radius: 10px;
+    background: rgba(0,245,255,0.08);
+    border: 1px solid rgba(0,245,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .contact-label { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.25rem; }
+  .contact-value { font-weight: 600; font-size: 1rem; color: var(--text-main); }
+  .contact-value a { color: var(--neon-cyan); text-decoration: none; }
+
+  .contact-form-card {
+    background: var(--dark-card);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    padding: 2.5rem;
+  }
+
+  .form-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 1px; margin-bottom: 0.35rem; }
+  .form-subtitle { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.5; }
+
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label { display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    color: var(--text-main);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    transition: border-color 0.3s;
+    outline: none;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 0 3px rgba(0,245,255,0.08);
+  }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-group select option { background: var(--dark-card); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .btn-submit {
+    width: 100%;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    color: var(--dark-bg);
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: box-shadow 0.3s, transform 0.2s;
+    margin-top: 0.5rem;
+  }
+  .btn-submit:hover {
+    box-shadow: 0 0 30px rgba(0,245,255,0.4);
+    transform: translateY(-2px);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060810;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 3rem;
+    position: relative; z-index: 1;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem; letter-spacing: 3px;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .footer-text { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+  .footer-text a { color: var(--neon-cyan); text-decoration: none; }
+  .footer-disclaimer {
+    font-size: 0.7rem; color: rgba(136, 146, 176, 0.6);
+    margin-top: 0.5rem;
+  }
+
+  /* ── DIVIDER ── */
+  .neon-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,245,255,0.3), rgba(178,75,255,0.3), transparent);
+    margin: 0;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SCROLLING TICKER ── */
+  .ticker-wrap {
+    background: rgba(0,245,255,0.05);
+    border-top: 1px solid rgba(0,245,255,0.1);
+    border-bottom: 1px solid rgba(0,245,255,0.1);
+    padding: 0.7rem 0;
+    overflow: hidden;
+    position: relative; z-index: 1;
+  }
+  .ticker {
+    display: flex; gap: 4rem;
+    animation: tickerScroll 25s linear infinite;
+    width: max-content;
+  }
+  .ticker-item {
+    white-space: nowrap;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--neon-cyan);
+    opacity: 0.7;
+  }
+  .ticker-dot { color: var(--neon-purple); margin: 0 0.5rem; }
+  @keyframes tickerScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 70px 1.5rem; }
+    .hero-content { grid-template-columns: 1fr; gap: 3rem; text-align: center; padding: 0 1.5rem; }
+    .hero-text p, .section-subtitle { max-width: 100%; }
+    .hero-btns { justify-content: center; }
+    .hero-stats { justify-content: center; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .machine-spotlight, .about-grid, .contact-grid, .products-header { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-machine { order: -1; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to VenueVend</h1>
-    </header>
-    <main>
-        <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <button type="submit">Submit</button>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">VenueVend</div>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#machine">The Machine</a></li>
+    <li><a href="#why">Why Partner</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="eyebrow">21+ Venues Only &nbsp;|&nbsp; Kansas & KC Area</div>
+      <h1>Smart Vending<span>For Nightlife</span></h1>
+      <p>VenueVend installs sleek, touchscreen vending machines in bars and entertainment venues — stocked with premium vapes, nicotine alternatives, and nightlife essentials. Zero staff involvement. Pure passive income.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Partner With Us</a>
+        <a href="#machine" class="btn-secondary">See The Machine</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">21+</div>
+          <div class="stat-label">Venues Only</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">$0</div>
+          <div class="stat-label">Staff Workload</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Revenue</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-machine">
+      <div class="machine-frame">
+        <div class="machine-glow"></div>
+        <div class="machine-screen">
+          <div class="screen-header">VenueVend — Select a Product</div>
+          <div class="product-grid">
+            <div class="product-cell"><span class="product-icon">💨</span><div class="product-label">Vape</div><div class="product-price">$14.99</div></div>
+            <div class="product-cell"><span class="product-icon">🟢</span><div class="product-label">Patch</div><div class="product-price">$9.99</div></div>
+            <div class="product-cell"><span class="product-icon">🍬</span><div class="product-label">Nicotine</div><div class="product-price">$8.99</div></div>
+            <div class="product-cell"><span class="product-icon">🔋</span><div class="product-label">Charger</div><div class="product-price">$6.99</div></div>
+            <div class="product-cell"><span class="product-icon">💧</span><div class="product-label">Hydration</div><div class="product-price">$4.99</div></div>
+            <div class="product-cell"><span class="product-icon">🌿</span><div class="product-label">Delta 8</div><div class="product-price">$19.99</div></div>
+          </div>
+        </div>
+        <div class="machine-panel">
+          <div class="age-badge">21+ Only</div>
+          <div class="machine-logo-small">VenueVend</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item">Passive Revenue<span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">Zero Staff Work<span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">Free Installation<span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">21+ Compliance Built-In<span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">Full Inventory Management<span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">Manhattan · Lawrence · Kansas City<span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">Passive Revenue<span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">Zero Staff Work<span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">Free Installation<span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">21+ Compliance Built-In<span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">Full Inventory Management<span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">Manhattan · Lawrence · Kansas City<span class="ticker-dot">◆</span></span>
+  </div>
+</div>
+
+<div class="neon-divider"></div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-container">
+    <span class="section-tag">Simple Process</span>
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-subtitle">From first contact to passive income in days — not weeks. We handle everything so you don't have to.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">01</div>
+        <span class="step-icon">🤝</span>
+        <div class="step-title">We Connect</div>
+        <div class="step-desc">Reach out and we'll schedule a quick walkthrough of your venue to find the perfect placement spot.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">02</div>
+        <span class="step-icon">📋</span>
+        <div class="step-title">Simple Agreement</div>
+        <div class="step-desc">We set up a straightforward partnership agreement. No long-term lock-ins. Just a clean, professional arrangement.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">03</div>
+        <span class="step-icon">⚡</span>
+        <div class="step-title">Fast Installation</div>
+        <div class="step-desc">We handle all installation logistics. Our machines are compact, sleek, and designed to blend into bar environments.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">04</div>
+        <span class="step-icon">💰</span>
+        <div class="step-title">You Earn</div>
+        <div class="step-desc">Your machine runs 24/7. We manage inventory, maintenance, and compliance. You just collect your cut.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- THE MACHINE -->
+<section id="machine">
+  <div class="section-container">
+    <span class="section-tag">The Technology</span>
+    <h2 class="section-title">The Machine</h2>
+    <p class="section-subtitle">A modern, touchscreen vending kiosk purpose-built for nightlife — not retrofitted from a gas station.</p>
+
+    <div class="machine-spotlight">
+      <div class="spotlight-visual">
+        <div class="spotlight-box">
+          <span class="machine-big-icon">🖥️</span>
+          <ul class="spec-list">
+            <li><div><strong>Full Touchscreen Display</strong> — Large interactive touchscreen makes browsing and buying fast and intuitive, even in a loud, dim bar environment.</div></li>
+            <li><div><strong>Age-Verification Integrated</strong> — Built-in ID scanning and verification technology ensures every transaction is 21+ compliant.</div></li>
+            <li><div><strong>Remote Inventory Monitoring</strong> — We track stock levels remotely and restock proactively — no staff involvement ever required.</div></li>
+            <li><div><strong>Card & Contactless Payments</strong> — Accepts all major cards, Apple Pay, and Google Pay for frictionless checkout.</div></li>
+            <li><div><strong>Compact Footprint</strong> — Designed to fit naturally in bar corners, hallways, or near restrooms without disrupting flow.</div></li>
+          </ul>
+          <div class="age-warning-box">
+            <div class="warning-icon">🔞</div>
+            <p><strong>Strictly 21+ Environments Only.</strong> VenueVend machines are installed exclusively in licensed adult venues. Age verification is enforced at every transaction — we take compliance seriously.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="products-header">
+          <div>
+            <span class="section-tag">What We Stock</span>
+            <h3 style="font-family:'Bebas Neue',sans-serif; font-size:2.2rem; letter-spacing:1px; margin-bottom:0.5rem;">Curated For<br>Nightlife Demand</h3>
+            <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6;">Every product is selected based on what bar patrons actually want — high-margin, high-demand items that sell themselves.</p>
+          </div>
+        </div>
+        <div class="products-grid">
+          <div class="product-card">
+            <span class="p-icon">💨</span>
+            <div class="p-name">Premium Vapes</div>
+            <div class="p-desc">Disposable and rechargeable vape products from top brands. Our top-selling category.</div>
+          </div>
+          <div class="product-card">
+            <span class="p-icon">🟢</span>
+            <div class="p-name">Nicotine Patches</div>
+            <div class="p-desc">Discreet nicotine alternatives for patrons who want their fix without stepping outside.</div>
+          </div>
+          <div class="product-card">
+            <span class="p-icon">🍬</span>
+            <div class="p-name">Nicotine Pouches</div>
+            <div class="p-desc">Popular smokeless nicotine options like ZYN, On! and other leading brands.</div>
+          </div>
+          <div class="product-card">
+            <span class="p-icon">🌿</span>
+            <div class="p-name">Delta 8 & Hemp</div>
+            <div class="p-desc">Legal hemp-derived products where applicable — a fast-growing and high-margin category.</div>
+          </div>
+          <div class="product-card">
+            <span class="p-icon">💊</span>
+            <div class="p-name">Night Essentials</div>
+            <div class="p-desc">Ibuprofen, antacids, energy supplements — the things people wish they had at 1am.</div>
+          </div>
+          <div class="product-card">
+            <span class="p-icon">🔋</span>
+            <div class="p-name">Phone Chargers</div>
+            <div class="p-desc">Dead phone at the bar? We solve that. Universal chargers and cables sell fast every night.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- WHY PARTNER -->
+<section id="why">
+  <div class="section-container">
+    <span class="section-tag">For Bar Owners</span>
+    <h2 class="section-title">Why Partner With VenueVend</h2>
+    <p class="section-subtitle">This isn't just a vending machine. It's a revenue-generating asset that works every night while you focus on running your bar.</p>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">💰</div>
+        <div class="benefit-title">True Passive Income</div>
+        <div class="benefit-desc">Every sale generates revenue for your venue — automatically. No extra work, no extra staff, no overhead. Just earnings that show up consistently.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🛠️</div>
+        <div class="benefit-title">Full-Service Management</div>
+        <div class="benefit-desc">We handle everything — installation, restocking, maintenance, and tech support. You'll never have to touch the machine or worry about it going empty.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">✅</div>
+        <div class="benefit-title">Compliance Handled For You</div>
+        <div class="benefit-desc">Age verification is built into every transaction. We stay current on regulations so you don't have to stress about legal exposure.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🎨</div>
+        <div class="benefit-title">Matches Your Vibe</div>
+        <div class="benefit-desc">Our machines are designed to blend into bar environments — not stick out like a grocery store kiosk. Sleek, modern, and atmosphere-appropriate.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🚀</div>
+        <div class="benefit-title">Quick, Easy Setup</div>
+        <div class="benefit-desc">From handshake to go-live in days. We make installation completely seamless with zero disruption to your normal operations.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🤝</div>
+        <div class="benefit-title">Long-Term Partnership</div>
+        <div class="benefit-desc">We're building relationships, not just placements. Transparent communication, responsive support, and a genuine commitment to your venue's success.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-container">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="section-tag">Our Story</span>
+        <h2 class="section-title">Built With<br>Intention</h2>
+        <p>VenueVend was born from a simple observation — bars and nightlife venues have high-demand customers with real buying power, and almost nobody was serving them well.</p>
+        <p>We're a <strong>Kansas-based startup</strong> built from the ground up with a focus on doing things the right way: responsible product placement, clear communication, and a genuine desire to add value to every venue we work with.</p>
+        <p>Because we're early in our growth, we approach every partnership with personal attention and care. You're not getting a faceless company — you're getting a dedicated partner who shows up.</p>
+        <ul class="commitment-list">
+          <li><span class="check">✓</span> Responsible vending in 21+ environments only</li>
+          <li><span class="check">✓</span> Simple, fast installation with no disruption</li>
+          <li><span class="check">✓</span> Full-service management — zero staff involvement</li>
+          <li><span class="check">✓</span> Long-term, trust-based partnerships</li>
+          <li><span class="check">✓</span> Proactive restocking and maintenance</li>
+        </ul>
+      </div>
+      <div>
+        <div class="about-card">
+          <div class="about-quote">This isn't just a vending machine. It's <span>passive income done right.</span></div>
+          <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.7; margin-bottom:1.5rem;">VenueVend exists at the intersection of nightlife, convenience, and smart business. We're early in our journey — but we're built to scale thoughtfully and deliver real value to every venue we work with.</p>
+          <div class="service-area">
+            <div class="service-area-title">📍 Service Area</div>
+            <p>Manhattan, KS &nbsp;·&nbsp; Lawrence, KS &nbsp;·&nbsp; Greater Kansas City Area</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-container">
+    <span class="section-tag">Get In Touch</span>
+    <h2 class="section-title">Ready To Add A<br>Revenue Stream?</h2>
+    <div class="contact-grid">
+      <div>
+        <p class="section-subtitle" style="margin-bottom:3rem;">If you own or manage a bar, club, or 21+ entertainment venue in the Kansas area, let's talk. Installation is easy and there's no cost to you.</p>
+        <div class="contact-item">
+          <div class="contact-icon-wrap">📞</div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-value">913-908-3208</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon-wrap">✉️</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:VenueVend@outlook.com">VenueVend@outlook.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon-wrap">📍</div>
+          <div>
+            <div class="contact-label">Service Area</div>
+            <div class="contact-value" style="font-size:0.9rem;">Manhattan, KS · Lawrence, KS · Kansas City Area</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-card">
+        <div class="form-title">Let's Partner Up</div>
+        <div class="form-subtitle">Tell us about your venue and we'll be in touch within 24 hours.</div>
+
+        <!-- SUCCESS MESSAGE (hidden by default) -->
+        <div id="form-success" style="display:none; background: rgba(0,245,255,0.08); border: 1.5px solid var(--neon-cyan); border-radius: 10px; padding: 2rem; text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">✅</div>
+          <div style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 1px; color: var(--neon-cyan); margin-bottom: 0.5rem;">Message Sent!</div>
+          <div style="color: var(--text-muted); font-size: 0.95rem;">We'll be in touch within 24 hours. — Austin @ VenueVend</div>
+        </div>
+
+        <form id="vv-form">
+          <!-- Formspree hidden fields -->
+          <input type="hidden" name="_subject" value="New VenueVend Partnership Inquiry">
+          <input type="hidden" name="_replyto" id="reply-to-field">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" name="first_name" placeholder="John" required>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" name="last_name" placeholder="Smith">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Venue / Bar Name</label>
+            <input type="text" name="venue_name" placeholder="The Rusty Nail" required>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" placeholder="(913) 000-0000" required>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email" id="email-field" placeholder="you@yourbar.com" oninput="document.getElementById('reply-to-field').value=this.value">
+          </div>
+          <div class="form-group">
+            <label>City</label>
+            <select name="city" required>
+              <option value="">Select your city...</option>
+              <option>Manhattan, KS</option>
+              <option>Lawrence, KS</option>
+              <option>Kansas City, KS</option>
+              <option>Kansas City, MO</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Anything Else?</label>
+            <textarea name="message" placeholder="Tell us about your venue, estimated weekly foot traffic, or any questions you have..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit" id="submit-btn">Send My Info →</button>
         </form>
-    </main>
-    <footer>
-        <p>&copy; 2026 VenueVend. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+      </div>
+
+      <script>
+        document.getElementById('vv-form').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const btn = document.getElementById('submit-btn');
+          btn.textContent = 'Sending...';
+          btn.disabled = true;
+
+          const formData = new FormData(this);
+
+          try {
+            const response = await fetch('https://formspree.io/f/xzdknjbe', {
+              method: 'POST',
+              body: formData,
+              headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+              document.getElementById('vv-form').style.display = 'none';
+              document.getElementById('form-success').style.display = 'block';
+            } else {
+              btn.textContent = 'Error — Try Again';
+              btn.disabled = false;
+              btn.style.background = 'linear-gradient(135deg, #ff2d78, #b24bff)';
+            }
+          } catch (err) {
+            btn.textContent = 'Error — Try Again';
+            btn.disabled = false;
+            btn.style.background = 'linear-gradient(135deg, #ff2d78, #b24bff)';
+          }
+        });
+      </script>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">VenueVend</div>
+      <div class="footer-text" style="margin-top:0.5rem;">Smart vending for 21+ nightlife venues.<br>Manhattan · Lawrence · Kansas City</div>
+    </div>
+    <div style="text-align:right;">
+      <div class="footer-text">
+        <a href="tel:9139083208">913-908-3208</a> &nbsp;|&nbsp; <a href="mailto:VenueVend@outlook.com">VenueVend@outlook.com</a>
+      </div>
+      <div class="footer-disclaimer" style=
